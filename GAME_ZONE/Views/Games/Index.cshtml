@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Game>
+
+@{
+
+    ViewData["Title"] = "Games";
+}
+<a class="btn btn-secondary btn-lg" asp-controller="Games" asp-action="Create" style="text-decoration: none;">
+    <i class="bi bi-plus-circle-dotted"></i>
+    Add Game
+</a>
+
+<div class="mt-5">
+    <table class="table table-bordered border-primary">
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr class="border-1 border-success">
+                    <td>
+                        <a class="d-flex" asp-controller="Games" asp-action="Details" asp-route-id="@game.Id" style="text-decoration: none;">
+                            <div class="pe-4">
+                                <img src="assets/images/games/@game.Cover" alt="@game.Name" style="max-width: 90px" />
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                                <h4 class="text-light" style="text-decoration: none;">@game.Name</h4>
+                                <h5 style="text-decoration: none;">@game.Category.Name</h5>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-info rounded rounded-3 me-2" asp-action="Edit" asp-route-id="@game.Id" style="text-decoration: none;">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <a class="btn btn-danger rounded rounded-3 js-delete" asp-action="Delete" asp-route-id="@game.Id" style="text-decoration: none;">
+                                <i class="bi bi-trash3"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
